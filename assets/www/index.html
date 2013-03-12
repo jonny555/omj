@@ -38,6 +38,18 @@ cb.showToolBar('true');
 
 </script>
 <script> $('a[href^="http"]').live('tap', function(e){ e.preventDefault(); var url = $(this).attr("href"); window.plugins.childBrowser.showWebPage(url, { showNavigationBar: true, showLocationBar: true, showAddressBar: true, showToolBar: true }); }); </script>
+<script type="text/javascript">
+    document.addEventListener('deviceready', function() {
+        navigator.splashscreen.hide()
+
+        $('<p/>').text('PhoneGap ready!').appendTo($('body'))
+
+        actionBarSherlockTabBar = cordova.require('cordova/plugin/actionBarSherlockTabBar')
+        actionBarSherlockTabBar.setTabSelectedListener(function(tabTag) {
+            $('#tab-name').text('Tab "' + tabTag + '" selected.')
+        })
+    }, false)
+</script>
 </head>
 <body onload='onBodyLoad();'>
 <div data-role="page" data-theme="a">
